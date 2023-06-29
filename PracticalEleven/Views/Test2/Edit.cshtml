@@ -1,0 +1,20 @@
+﻿@model PracticalEleven.Models.Employee
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Employee</h2>
+
+@{ 
+    Html.RenderPartial("_EditPartialView");
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index", string.Empty, htmlAttributes: new { @class = "btn btn-sm btn-secondary" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<PracticalEleven.Models.Employee>
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create", string.Empty, htmlAttributes: new { @class = "btn btn-sm btn-primary" })
+</p>
+
+<table class="table">
+    <tr class="table-dark text-center">
+        <th>
+            @Html.DisplayNameFor(Model => Model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.DateOfBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.Address)
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+
+   @{
+       Html.RenderPartial("_IndexPartialView");
+   }
+
+</table>
