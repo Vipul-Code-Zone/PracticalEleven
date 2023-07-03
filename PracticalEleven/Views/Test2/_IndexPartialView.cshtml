@@ -13,9 +13,12 @@
             @Html.DisplayFor(modelItem => item.Address)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-sm btn-warning" }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-sm btn-success" }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-sm btn-danger" })
+            <button data-id="@item.Id" class="btn edit btn-sm btn-warning">Edit</button>
+            @*@Html.ActionLink("Edit", "", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-sm btn-warning edit" })*@ |
+            <button data-id="@item.Id" class="btn details btn-sm btn-success">Details</button>
+            @*@Html.ActionLink("Details", "Details", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-sm btn-success " })*@ |
+            @*@Html.ActionLink("Delete", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-sm btn-danger" })*@
+            <button data-id="@item.Id" class="btn delete-item btn-sm btn-danger">Delete</button>
         </td>
     </tr>
 }

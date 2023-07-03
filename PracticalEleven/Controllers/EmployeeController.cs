@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using PracticalEleven.EmployeeData;
 
 namespace PracticalEleven.Controllers
 {
@@ -33,20 +32,21 @@ namespace PracticalEleven.Controllers
 		[HttpPost]
 		public ActionResult Create(Employee employee)
 		{
-			try
+			var test = Convert.ToDateTime(employee.DateOfBirth) - DateTime.Now;
+			var test1 = new DateTime(1900, 01, 01) - Convert.ToDateTime(employee.DateOfBirth);
+			if (test.Days > 1 || test1.Days > 1)
 			{
-				Employee newEmp = new Employee();
-				newEmp.Name = employee.Name;
-				newEmp.DateOfBirth = employee.DateOfBirth;
-				newEmp.Address = employee.Address;
-				EmployeeData.EmployeeData.AddEmployee(newEmp);
-
-				return RedirectToAction("Index");
-			}
-			catch
-			{
+				ViewBag.Message = "Date Should Be between 1900-01-01 to Today's Date";
 				return View();
 			}
+
+			Employee newEmp = new Employee();
+			newEmp.Name = employee.Name;
+			newEmp.DateOfBirth = employee.DateOfBirth;
+			newEmp.Address = employee.Address;
+			EmployeeData.EmployeeData.AddEmployee(newEmp);
+			TempData["AddSuccess"] = "Employee Added Successfully!";
+			return RedirectToAction("Index");
 		}
 
 		// GET: Employee/Edit/5
@@ -79,7 +79,7 @@ namespace PracticalEleven.Controllers
 				}
 
 				EmployeeData.EmployeeData.UpdateEmployee(employee);
-
+				TempData["UpdateSuccess"] = "Employee Updated Successfully!";
 				return RedirectToAction("Index");
 			}
 			catch
@@ -116,7 +116,7 @@ namespace PracticalEleven.Controllers
 				}
 
 				EmployeeData.EmployeeData.DeleteEmployee(id);
-
+				TempData["deletedSuccess"] = "Employee Deleted!";
 				return RedirectToAction("Index");
 			}
 			catch

@@ -1,14 +1,12 @@
 ﻿using PracticalEleven.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace PracticalEleven.Controllers
 {
-    public class Test2Controller : Controller
-    {
+	public class Test2Controller : Controller
+	{
 		// GET: Employee
 		public ActionResult Index()
 		{
@@ -17,54 +15,43 @@ namespace PracticalEleven.Controllers
 		}
 
 		// GET: Employee/Details/5
-		public ActionResult Details(int id)
+		public PartialViewResult Details(int id)
 		{
 			Employee employee = EmployeeData.EmployeeData.GetEmployee(id);
-			return View(employee);
+			return PartialView("_DetailsPartialView", employee);
 		}
 
 		// GET: Employee/Create
-		public ActionResult Create()
+		public PartialViewResult Create()
 		{
-			return View();
+			return PartialView("_CreatePartialView");
 		}
 
 		// POST: Employee/Create
 		[HttpPost]
 		public ActionResult Create(Employee employee)
 		{
-			try
-			{
-				Employee newEmp = new Employee();
-				newEmp.Name = employee.Name;
-				newEmp.DateOfBirth = employee.DateOfBirth;
-				newEmp.Address = employee.Address;
-				EmployeeData.EmployeeData.AddEmployee(newEmp);
+			Employee newEmp = new Employee();
+			newEmp.Name = employee.Name;
+			newEmp.DateOfBirth = employee.DateOfBirth;
+			newEmp.Address = employee.Address;
+			EmployeeData.EmployeeData.AddEmployee(newEmp);
+			TempData["AddSuccess"] = "Employee Added Successfully!";
+			return RedirectToAction("Index");
 
-				return RedirectToAction("Index");
-			}
-			catch
-			{
-				return View();
-			}
 		}
 
 		// GET: Employee/Edit/5
 		[HttpGet]
-		public ActionResult Edit(int? id)
+		public PartialViewResult Edit(int id)
 		{
-			if (id == null)
-			{
-				return RedirectToAction("Error");
-			}
-
-			var employee = EmployeeData.EmployeeData.GetEmployee(id ?? 0);
+			var employee = EmployeeData.EmployeeData.GetEmployee(id);
 
 			if (employee == null)
 			{
-				return RedirectToAction("Error");
+				return PartialView("Error");
 			}
-			return View(employee);
+			return PartialView("_EditPartialView", employee);
 		}
 
 		// POST: Employee/Edit/5
@@ -79,12 +66,12 @@ namespace PracticalEleven.Controllers
 				}
 
 				EmployeeData.EmployeeData.UpdateEmployee(employee);
-
+				TempData["UpdateSuccess"] = "Employee Updated Successfully!";
 				return RedirectToAction("Index");
 			}
 			catch
 			{
-				return View();
+				return View("Index");
 			}
 		}
 

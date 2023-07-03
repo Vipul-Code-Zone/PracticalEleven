@@ -4,14 +4,9 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Employee Details</h2>
 
-<div>
-    <hr class="w-25"/>
-    @{ 
-        Html.RenderPartial("_DetailsPartialview");
-    }
-</div>
+    
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-sm btn-warning" }) |
     @Html.ActionLink("Back to List", "Index", string.Empty, htmlAttributes: new { @class = "btn btn-sm btn-success" })

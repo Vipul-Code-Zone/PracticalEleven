@@ -146,6 +146,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -182,10 +183,8 @@
     <Content Include="Views\Employee\Details.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
     <Content Include="Views\Employee\Delete.cshtml" />
-    <Content Include="Views\Test2\Create.cshtml" />
     <Content Include="Views\Test2\Delete.cshtml" />
     <Content Include="Views\Test2\Details.cshtml" />
-    <Content Include="Views\Test2\Edit.cshtml" />
     <Content Include="Views\Test2\Index.cshtml" />
     <Content Include="Views\Test2\_IndexPartialView.cshtml" />
     <Content Include="Views\Test2\_CreatePartialView.cshtml" />

@@ -19,7 +19,7 @@ namespace PracticalEleven.EmployeeData
 				{
 					Id = i,
 					Name = $"Test{i}",
-					DateOfBirth = DateTime.Today.ToString("yyyy-MM-dd"),
+					DateOfBirth = DateTime.Today.ToString("dd-MM-yyyy"),
 					Address = $"Hello this is address! {i * 568232}"
 				});
 			}

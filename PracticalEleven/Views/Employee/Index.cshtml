@@ -4,9 +4,20 @@
 }
 
 <p>
-    @Html.ActionLink("Create New", "Create", string.Empty, htmlAttributes: new {@class = "btn btn-sm btn-primary" })
+    @Html.ActionLink("Create New", "Create", string.Empty, htmlAttributes: new { @class = "btn btn-sm btn-primary" })
 </p>
-
+@if (TempData["UpdateSuccess"] != null)
+{
+    <p class="text-success toast-msg">@TempData["UpdateSuccess"]</p>
+}
+@if (TempData["AddSuccess"] != null)
+{
+    <p class="text-success toast-msg">@TempData["AddSuccess"]</p>
+}
+@if (TempData["deletedSuccess"] != null)
+{
+    <p class="text-danger toast-msg">@TempData["deletedSuccess"]</p>
+}
 <table class="table">
     <tr class="table-dark text-center">
         <th>
@@ -36,11 +47,22 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id}, htmlAttributes:new { @class = "btn btn-sm btn-warning" }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }, htmlAttributes:new { @class = "btn btn-sm btn-success" }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, htmlAttributes:new {  @class = "btn btn-sm btn-danger" })
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-sm btn-warning" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-sm btn-success" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-sm btn-danger" })
             </td>
         </tr>
     }
 
 </table>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                $('.toast-msg').delay(2000).hide(0);
+            });
+        });
+    </script>
+
+}
